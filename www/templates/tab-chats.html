@@ -5,10 +5,14 @@
       <button class="button button-full button-assertive" ng-click="takePhoto()">
       Take Photo
       </button>
+      <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}" style="text-align: center">
+      <img ng-show="imgURI === undefined" ng-src="http://placehold.it/300x300" style="text-align: center">
+      
       <button class="button button-full button-assertive" ng-click="choosePhoto()">
       Choose Photo
       </button>
-      <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}" style="text-align: center">
+      <img ng-show="imgURI2 !== undefined" ng-src="{{imgURI2}}" style="text-align: center">
+      <img ng-show="imgURI2 === undefined" ng-src="http://placehold.it/300x300" style="text-align: center">
     </ion-item>
     <ion-item>
       <h3>Capture plugin</h3>

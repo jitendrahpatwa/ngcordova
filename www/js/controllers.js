@@ -4,7 +4,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ChatsCtrl', function($scope, Chats, $cordovaCamera, $cordovaCapture) {
+.controller('ChatsCtrl', ['$scope', 'Chats', '$cordovaToast', '$cordovaCamera', '$cordovaCapture',function($scope, Chats, $cordovaToast, $cordovaCamera, $cordovaCapture) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -12,6 +12,24 @@ angular.module('starter.controllers', [])
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
+  $cordovaToast.show('Here is a message', 'long', 'center')
+    .then(function(success) {
+      console.info("toast shown");
+    }, function (error) {
+      // error
+    });
+
+  $cordovaToast.showShortTop('Here is a message').then(function(success) {
+    console.info("toast shownshorttop");
+  }, function (error) {
+    // error
+  });
+
+  $cordovaToast.showLongBottom('Here is a message').then(function(success) {
+    console.info("toast shownlongbottom");
+  }, function (error) {
+    // error
+  });
 
   $scope.chats = Chats.all();
   $scope.remove = function(chat) {
@@ -19,7 +37,8 @@ angular.module('starter.controllers', [])
   };
   console.info("in ChatsCtrl");
 
-  $scope.takePhoto = function () {
+  $scope.takePhoto = function ($cordovaCamera) {
+    console.info("is still in takePhoto");
     var options = {
       quality: 75,
       destinationType: Camera.DestinationType.DATA_URL,
@@ -29,7 +48,8 @@ angular.module('starter.controllers', [])
       targetWidth: 300,
       targetHeight: 300,
       popoverOptions: CameraPopoverOptions,
-      saveToPhotoAlbum: false
+      saveToPhotoAlbum: false,
+      correctOrientation:true
     };
    
     $cordovaCamera.getPicture(options).then(function (imageData) {
@@ -37,9 +57,10 @@ angular.module('starter.controllers', [])
       }, function (err) {
           alert('can not load image');
       });
-  }
+  };
                 
-  $scope.choosePhoto = function () {
+  $scope.choosePhoto = function ($cordovaCamera) {
+    console.info("is still in choosePhoto");
     var options = {
       quality: 75,
       destinationType: Camera.DestinationType.DATA_URL,
@@ -53,11 +74,11 @@ angular.module('starter.controllers', [])
   };
 
       $cordovaCamera.getPicture(options).then(function (imageData) {
-          $scope.imgURI = "data:image/jpeg;base64," + imageData;
+          $scope.imgURI2 = "data:image/jpeg;base64," + imageData;
       }, function (err) {
           alert('can not load image');
       });
-  }
+  };
 
   
   //.............................................................../capture video
@@ -100,7 +121,7 @@ angular.module('starter.controllers', [])
       navigator.notification.alert('Error code: ' + error.code, null, 'Capture Error');
   };
 
-})
+}])
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);

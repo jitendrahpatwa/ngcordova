@@ -1,10 +1,10 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ngCordova'])
 
 .controller('DashCtrl', function($scope) {
 
 })
 
-.controller('ChatsCtrl', ['$scope', 'Chats', '$cordovaToast', '$cordovaCamera', '$cordovaCapture',function($scope, Chats, $cordovaToast, $cordovaCamera, $cordovaCapture) {
+.controller('ChatsCtrl', ['$scope', 'Chats', '$cordovaToast', '$cordovaCamera', '$cordovaCapture', '$ionicPlatform',function($scope, Chats, $cordovaToast, $cordovaCamera, $cordovaCapture, $ionicPlatform) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -12,7 +12,11 @@ angular.module('starter.controllers', [])
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-  $cordovaToast.show('Here is a message', 'long', 'center')
+  /*$ionicPlatform.ready(function() {
+    console.warn("should me opened");
+    $scope.$digest();
+  });*/
+  /*$cordovaToast.show('Here is a message', 'long', 'center')
     .then(function(success) {
       console.info("toast shown");
     }, function (error) {
@@ -29,7 +33,7 @@ angular.module('starter.controllers', [])
     console.info("toast shownlongbottom");
   }, function (error) {
     // error
-  });
+  });*/
 
   $scope.chats = Chats.all();
   $scope.remove = function(chat) {

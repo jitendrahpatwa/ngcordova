@@ -27,5 +27,7 @@
     "cordova-plugin-geolocation",
     "cordova-plugin-x-toast"
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    "android"
+  ]
 }

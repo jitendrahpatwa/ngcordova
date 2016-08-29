@@ -1,17 +1,27 @@
 angular.module('starter.controllers', ['ngCordova'])
 
-.controller('DashCtrl', function($scope) {
-
+.controller('DashCtrl', function($scope,$ionicLoading,$ionicPopup,$cordovaToast) {
+  $ionicLoading.show({ template: 'Wait Just a seconds!!!', noBackdrop: true, duration: 2000 });
+  $ionicPopup.alert({
+    title: 'Welcome',
+    content: 'in ngCordova plugins!'
+  }).then(function(res) {
+    console.info('started');
+    /*$cordovaToast.showShortTop('plugins is ready to use...').then(function(success) {
+      console.info("toast appears");
+    }, function (error) {
+      // error
+    });*/
+    var message = 'plugins is ready to use...', duration = 'long', location = 'center';
+    $cordovaToast.show(message, duration, location).then(function(success) {
+            console.log("The toast was shown");
+        }, function (error) {
+            console.log("The toast was not shown due to " + error);
+        });
+  });
 })
 
 .controller('ChatsCtrl', function($scope, Chats, $cordovaToast, $cordovaCamera, $cordovaCapture, $ionicPlatform) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
   /*$ionicPlatform.ready(function() {
     console.warn("should me opened");
     $scope.$digest();
@@ -29,19 +39,19 @@ angular.module('starter.controllers', ['ngCordova'])
     // error
   });
 
-  $cordovaToast.showLongBottom('Here is a message').then(function(success) {
-    console.info("toast shownlongbottom");
+  $cordovaToast.showShortTop('Here is a message').then(function(success) {
+    console.info("toast shownshorttop");
   }, function (error) {
     // error
   });*/
 
-  $scope.chats = Chats.all();
+  /*$scope.chats = Chats.all();
   $scope.remove = function(chat) {
     Chats.remove(chat);
-  };
+  };*/
   console.info("in ChatsCtrl");
 
-  $scope.takePhoto = function ($cordovaCamera) {
+  $scope.takePhoto = function () {
     console.info("is still in takePhoto");
     var options = {
       quality: 75,
@@ -63,7 +73,7 @@ angular.module('starter.controllers', ['ngCordova'])
       });
   };
                 
-  $scope.choosePhoto = function ($cordovaCamera) {
+  $scope.choosePhoto = function () {
     console.info("is still in choosePhoto");
     var options = {
       quality: 75,
@@ -88,7 +98,7 @@ angular.module('starter.controllers', ['ngCordova'])
   //.............................................................../capture video
   $scope.video = function(){
     console.info("in video function");
-    navigator.device.capture.captureVideo(captureSuccess, captureError, {limit:2});
+    navigator.device.capture.captureVideo(captureSuccess, captureError, {limit:1});
   };
   var captureSuccess = function(mediaFiles) {
       var i, path, len;
@@ -108,7 +118,7 @@ angular.module('starter.controllers', ['ngCordova'])
   ///............................/////////////////////////////////.../capture image
   $scope.image = function(){
     console.info("in image function");
-    navigator.device.capture.captureImage(captureSuccess2, captureError2, {limit:2});
+    navigator.device.capture.captureImage(captureSuccess2, captureError2, {limit:1});
   };
   var captureSuccess2 = function(mediaFiles) {
       var i, path, len;
@@ -131,7 +141,7 @@ angular.module('starter.controllers', ['ngCordova'])
   $scope.takePicture = function(){
     var options = {
       destinationType: Camera.DestinationType.DATA_URL,
-      //sourceType: Camera.PictureSourceType.CAMERA,
+      sourceType: Camera.PictureSourceType.CAMERA,
       encodingType: Camera.EncodingType.JPEG
     };
     $cordovaCamera.getPicture({options}).then(

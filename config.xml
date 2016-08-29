@@ -1,45 +1,57 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='utf-8'?>
 <widget id="com.ionicframework.all725320" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>all</name>
-  <description>
+    <name>all</name>
+    <description>
         An Practice App.
     </description>
-  <author email="jitendrapatwa135@gmail.com" href="http://jp.com/">
+    <author email="jitendrapatwa135@gmail.com" href="http://jp.com/">
       Jitendra
     </author>
-  <content src="index.html"/>
-  <access origin="*"/>
-  <preference name="webviewbounce" value="false"/>
-  <preference name="UIWebViewBounce" value="false"/>
-  <preference name="DisallowOverscroll" value="true"/>
-  <preference name="SplashScreenDelay" value="2000"/>
-  <preference name="FadeSplashScreenDuration" value="2000"/>
-  <preference name="android-minSdkVersion" value="16"/>
-  <preference name="BackupWebStorage" value="none"/>
-  <feature name="StatusBar">
-    <param name="ios-package" value="CDVStatusBar" onload="true"/>
-  </feature>
-  <plugin name="cordova-plugin-whitelist" spec="1" />
-  <allow-navigation href="http://*/*" />
-  <allow-navigation href="https://*/*" />
-  <allow-navigation href="data:*" />
-  <access origin="content:///*" />
-  <allow-intent href="http://*/*" />
-  <allow-intent href="https://*/*" />
-  <allow-intent href="tel:*" />
-  <allow-intent href="sms:*" />
-  <allow-intent href="mailto:*" />
-  <allow-intent href="geo:*" />
-  <platform name="android">
-      <allow-intent href="market:*" />
-  </platform>
-<preference name="LoadUrlTimeoutValue" value="10000"/>
-<preference name="InAppBrowserStorageEnabled" value="true"/>
-<preference name="LoadingDialog" value="My Title,My Message"/>
-<preference name="ErrorUrl" value="myErrorPage.html"/>
-<preference name="LogLevel" value="VERBOSE"/>
-<preference name="AndroidLaunchMode" value="singleTop"/>
-<preference name="DefaultVolumeStream" value="call" />
-<preference name="OverrideUserAgent" value="Mozilla/5.0 My Browser" />
-<preference name="AppendUserAgent" value="My Browser" />
+    <content src="index.html" />
+    <access origin="*" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="UIWebViewBounce" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="SplashScreenDelay" value="2000" />
+    <preference name="FadeSplashScreenDuration" value="2000" />
+    <preference name="android-minSdkVersion" value="16" />
+    <preference name="BackupWebStorage" value="none" />
+    <feature name="StatusBar">
+        <param name="ios-package" onload="true" value="CDVStatusBar" />
+    </feature>
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" />
+    <allow-navigation href="data:*" />
+    <access origin="content:///*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <preference name="LoadUrlTimeoutValue" value="10000" />
+    <preference name="InAppBrowserStorageEnabled" value="true" />
+    <preference name="LoadingDialog" value="My Title,My Message" />
+    <preference name="ErrorUrl" value="myErrorPage.html" />
+    <preference name="LogLevel" value="VERBOSE" />
+    <preference name="AndroidLaunchMode" value="singleTop" />
+    <preference name="DefaultVolumeStream" value="call" />
+    <preference name="OverrideUserAgent" value="Mozilla/5.0 My Browser" />
+    <preference name="AppendUserAgent" value="My Browser" />
+    <plugin name="cordova-plugin-x-toast" spec="~2.5.2" />
+    <plugin name="cordova-plugin-camera" spec="~2.2.0" />
+    <plugin name="cordova-plugin-media-capture" spec="~1.3.0" />
+    <plugin name="cordova-plugin-compat" spec="~1.0.0" />
+    <plugin name="cordova-plugin-console" spec="~1.0.3" />
+    <plugin name="cordova-plugin-device" spec="~1.1.2" />
+    <plugin name="cordova-plugin-file" spec="~4.2.0" />
+    <plugin name="cordova-plugin-geolocation" spec="~2.2.0" />
+    <plugin name="cordova-plugin-network-information" spec="~1.2.1" />
+    <plugin name="cordova-plugin-splashscreen" spec="~3.2.2" />
+    <plugin name="cordova-plugin-statusbar" spec="~2.1.3" />
+    <plugin name="ionic-plugin-keyboard" spec="~2.2.1" />
 </widget>

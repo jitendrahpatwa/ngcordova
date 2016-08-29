@@ -41,7 +41,7 @@ angular.module('starter.controllers', ['ngCordova'])
   };
   console.info("in ChatsCtrl");
 
-  /*$scope.takePhoto = function ($cordovaCamera) {
+  $scope.takePhoto = function ($cordovaCamera) {
     console.info("is still in takePhoto");
     var options = {
       quality: 75,
@@ -82,10 +82,10 @@ angular.module('starter.controllers', ['ngCordova'])
       }, function (err) {
           alert('can not load image');
       });
-  };*/
+  };
 
   
-  /*//.............................................................../capture video
+  //.............................................................../capture video
   $scope.video = function(){
     console.info("in video function");
     navigator.device.capture.captureVideo(captureSuccess, captureError, {limit:2});
@@ -123,34 +123,28 @@ angular.module('starter.controllers', ['ngCordova'])
   };
   var captureError2 = function(error) {
       navigator.notification.alert('Error code: ' + error.code, null, 'Capture Error');
-  };*/
+  };
   //alert('hi');
 
   //goes here....
   $scope.pictureUrl = "http://placehold.it/300x300";
-  document.addEventListener("deviceready", function ($scope) {
-    /*$scope.takePicture = function(){
-        console.log('camera call data:');
-        alert('camera call data:');
-    };*/
-    $scope.takePicture = function(){
-      var options = {
-        destinationType: Camera.DestinationType.DATA_URL,
-        //sourceType: Camera.PictureSourceType.CAMERA,
-        encodingType: Camera.EncodingType.JPEG
-      };
-      $cordovaCamera.getPicture({options}).then(
-          function(data){
-            $scope.pictureUrl = 'data:image/jpeg;base64,'+data;
-            console.log('camera data:'+angular.toJson(data));
-            alert('camera data:'+angular.toJson(data));
-          },
-          function(error){
-            console.error('camera error:'+angular.toJson(error));
-            alert('camera error:'+angular.toJson(error));
-          });
+  $scope.takePicture = function(){
+    var options = {
+      destinationType: Camera.DestinationType.DATA_URL,
+      //sourceType: Camera.PictureSourceType.CAMERA,
+      encodingType: Camera.EncodingType.JPEG
     };
-  });
+    $cordovaCamera.getPicture({options}).then(
+        function(data){
+          $scope.pictureUrl = 'data:image/jpeg;base64,'+data;
+          console.log('camera data:'+angular.toJson(data));
+          alert('camera data:'+angular.toJson(data));
+        },
+        function(error){
+          console.error('camera error:'+angular.toJson(error));
+          alert('camera error:'+angular.toJson(error));
+        });
+  };
   //ends....
 
 })

@@ -12,12 +12,12 @@ angular.module('starter.controllers', ['ngCordova'])
     }, function (error) {
       // error
     });*/
-    var message = 'plugins is ready to use...', duration = 'long', location = 'center';
+    /*var message = 'plugins is ready to use...', duration = 'long', location = 'center';
     $cordovaToast.show(message, duration, location).then(function(success) {
             console.log("The toast was shown");
         }, function (error) {
             console.log("The toast was not shown due to " + error);
-        });
+        });*/
   });
 })
 

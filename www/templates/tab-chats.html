@@ -2,11 +2,12 @@
   <ion-content>
     <ion-item>
       <br>
-      <h2>Example 1</h2><br>
+      <h1>Example 1</h1><br>
       goes here.....
       <div class="list card">
         <div class="item item-image">
-          <img ng-src="{{pictureUrl}}">
+          <img ng-show="pictureUrl !== undefined" ng-src="{{pictureUrl}}">
+          <img ng-show="pictureUrl === undefined" ng-src="http://placehold.it/300x300">
         </div>
       </div>
       <div class="padding">
@@ -14,7 +15,9 @@
       </div>
       ends.....
       <br>
-      <h2>Example 2</h2><br>
+
+
+      <h1>Example 2</h1><br>
       <h3>Camera plugin</h3>
       <button class="button button-full button-assertive" ng-click="takePhoto()">
       Take Photo
@@ -28,17 +31,27 @@
       <img ng-show="imgURI2 !== undefined" ng-src="{{imgURI2}}" style="text-align: center">
       <img ng-show="imgURI2 === undefined" ng-src="http://placehold.it/300x300" style="text-align: center">
     </ion-item>
+
+
     <ion-item>
-      <h2>Example 3</h2><br>
+      <h1>Example 3</h1><br>
       <h3>Capture plugin</h3>
       <h3>Capture Video Demo</h3>
-      <button id="takeVideo" ng-click="video()">Take Video</button>
+      <!-- <video controls="controls" preload="metadata" autoplay="autoplay" webkit-playsinline="webkit-playsinline" class="videoPlayer">
+        <source src='https://www.youtube.com/embed/JpyR-Ym7Hck' type='video/mp4'>
+      </video> -->
+      <!-- <iframe width="300" height="300" src="https://www.youtube.com/embed/JpyR-Ym7Hck" frameborder="0" allowfullscreen></iframe> -->
+      <!-- <video controls="controls" preload="metadata" autoplay="autoplay" webkit-playsinline="webkit-playsinline" class="videoPlayer"><source src="http://player.vimeo.com/external/85569724.sd.mp4?s=43df5df0d733011263687d20a47557e4" type="video/mp4"/></video> -->
+      <br>
+      <button id="takeVideo" ng-click="video()">Take Video</button><br>
         <div id="videoArea"></div>
     </ion-item>
     <ion-item>
       <h3>Capture Image Demo</h3>
-      <button id="takeImage" ng-click="image()">Take Image</button>
-        <div id="imageArea"></div>
+      <button id="takeImage" ng-click="image()">Take Image</button><br>
+        <!-- <div id="imageArea"></div> -->
+        <img ng-show="imageArea !== undefined" ng-src="{{imageArea}}" style="text-align: center">
+        <img ng-show="imageArea === undefined" ng-src="http://placehold.it/300x300" style="text-align: center">
     </ion-item>
     <!-- <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">

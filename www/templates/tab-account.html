@@ -1,9 +1,23 @@
-<ion-view view-title="Account">
+<ion-view view-title="Other Plugins">
   <ion-content>
-    <ion-list>
+    <!-- <ion-list>
     <ion-toggle  ng-model="settings.enableFriends">
         Enable Friends
     </ion-toggle>
-    </ion-list>
+    </ion-list> -->
+    <ion-item>
+    	<br>
+    	Geolocale Data<br>
+	      Lat: <p id="lat" ng-bind="latlon"></p>
+	      Lon: <p id="lon" ng-bind="lonlon"></p>
+    	<button class="button" ng-click="geodata()">Find here</button>
+    	<br>
+    	<hr>
+    	Social sharing <br>
+    	<button class="button" ng-click="postdata()">Post here</button>
+    	<br>
+    	<hr>
+      <br>
+     </ion-item>
   </ion-content>
 </ion-view>

@@ -15,6 +15,26 @@ angular.module('starter.controllers', ['ngCordova'])
   }, 2000);
   
 
+  /*$cordovaToast
+    .show('plugins are ready to use', 'long', 'center')
+    .then(function(success) {
+      // success
+    }, function (error) {
+      // error
+    });
+
+  $cordovaToast.showShortTop('Here is a message').then(function(success) {
+    // success
+  }, function (error) {
+    // error
+  });
+
+  $cordovaToast.showLongBottom('Here is a message').then(function(success) {
+    // success
+  }, function (error) {
+    // error
+  });*/
+
   ///////////////////////////////////////////////////////////////////////////////Example 1
   $scope.record = function(){
     navigator.device.capture.captureAudio(captureSuccess,captureError,{limit:1});
@@ -59,15 +79,20 @@ angular.module('starter.controllers', ['ngCordova'])
   //$scope.pictureUrl = "http://placehold.it/300x300";
   $scope.takePicture = function(){
     var options = {
+      quality: 75,
       destinationType: Camera.DestinationType.DATA_URL,
       sourceType: Camera.PictureSourceType.CAMERA,
-      encodingType: Camera.EncodingType.JPEG
+      encodingType: Camera.EncodingType.JPEG,
+      popoverOptions: CameraPopoverOptions,
+      saveToPhotoAlbum: true,
+      correctOrientation:true
     };
     $cordovaCamera.getPicture({options}).then(
         function(data){
-          $scope.pictureUrl = 'data:image/jpeg;base64,'+data;
+          console.trace();
+          $scope.pictureUrl2 = 'data:image/jpeg;base64,'+data;
           console.log('camera data:'+angular.toJson(data));
-          alert('camera data:'+angular.toJson(data));
+          //alert('camera data:'+angular.toJson(data));
         },
         function(error){
           console.error('camera error:'+angular.toJson(error));
@@ -179,20 +204,27 @@ angular.module('starter.controllers', ['ngCordova'])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
+.controller('AccountCtrl', function($scope,$cordovaGeolocation,$cordovaSocialSharing) {
+  $scope.latlon2 = "jon";
+  /*$scope.settings = {
     enableFriends: true
-  };
-  alert('in AccountCtrl');
-  /*var posOptions = {timeout: 10000, enableHighAccuracy: false};
+  };*/
+  //alert('in AccountCtrl');
+  $scope.geodata = function(){
+
+  var posOptions = {timeout: 10000, enableHighAccuracy: false};
   $cordovaGeolocation
     .getCurrentPosition(posOptions)
     .then(function (position) {
       var lat  = position.coords.latitude;
       var long = position.coords.longitude;
       alert(lat+" " +long);
+      //$scope.latlon
+      document.getElementById('lat').innerHTML = position.coords.latitude;
+      //$scope.lonlon
+      document.getElementById('lon').innerHTML = position.coords.longitude;
     }, function(err) {
-      // error
+      console.error("some error");
     });
 
 
@@ -208,8 +240,9 @@ angular.module('starter.controllers', ['ngCordova'])
       // error
     },
     function(position) {
-      var lat  = position.coords.latitude
-      var long = position.coords.longitude
+      var lat  = position.coords.latitude;
+      var long = position.coords.longitude;
+      alert("after watch:"+lat+" " +long);
   });
 
 
@@ -217,8 +250,30 @@ angular.module('starter.controllers', ['ngCordova'])
   // OR
   $cordovaGeolocation.clearWatch(watch)
     .then(function(result) {
-      // success
+      console.info("clearWatch called:"+result);
       }, function (error) {
-      // error
-    });*/
+      console.error(error);
+    });
+  };
+
+$scope.postdata = function(){
+    $cordovaSocialSharing
+    .share('shared to you Im glade!', 'Ionic Post', null, 'http://shares.890m.com/') // Share via native share sheet
+    .then(function(result) {
+        $ionicPopup.alert({
+          title: 'Done',
+          content: 'Shared Successfully!'
+        }).then(function(res) {
+          console.info('done');
+        });  
+    }, function(err) {
+      $ionicPopup.alert({
+          title: 'Failed',
+          content: 'Not shared! due to '+angular.toJson(err)
+        }).then(function(res) {
+          console.info('done'+res);
+        });  
+    });
+};
+
 });

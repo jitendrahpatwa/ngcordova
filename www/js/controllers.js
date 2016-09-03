@@ -1,6 +1,8 @@
 angular.module('starter.controllers', ['ngCordova'])
 
-.controller('DashCtrl', function($scope,$ionicLoading,$ionicPopup,$timeout, $cordovaCamera, $cordovaCapture,$cordovaToast) {
+.controller('DashCtrl', function($scope,$ionicLoading,$ionicPopup,$cordovaSplashscreen,$timeout, $cordovaCamera, $cordovaCapture,$cordovaToast,$cordovaAdMob) {
+  $cordovaSplashscreen.show();
+
   $ionicLoading.show({ template: 'Wait Just a seconds!!!', noBackdrop: true, duration: 2000 });
   
   $timeout(function() {
@@ -204,8 +206,25 @@ angular.module('starter.controllers', ['ngCordova'])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope,$cordovaGeolocation,$cordovaSocialSharing) {
+.controller('AccountCtrl', function($scope,$cordovaGeolocation,$cordovaSocialSharing,$ionicPopup,$cordovaBarcodeScanner,$cordovaStatusbar) {
   $scope.latlon2 = "jon";
+  $cordovaStatusbar.overlaysWebView(true);
+
+  // styles: Default : 0, LightContent: 1, BlackTranslucent: 2, BlackOpaque: 3
+  $cordovaStatusbar.style(1);
+
+  // supported names: black, darkGray, lightGray, white, gray, red, green,
+  // blue, cyan, yellow, magenta, orange, purple, brown
+  $cordovaStatusbar.styleColor('black');
+
+  $cordovaStatusbar.styleHex('#000');
+
+  $cordovaStatusbar.hide();
+
+  $cordovaStatusbar.show();
+
+  var isVisible = $cordovaStatusbar.isVisible();
+
   /*$scope.settings = {
     enableFriends: true
   };*/
@@ -274,6 +293,26 @@ $scope.postdata = function(){
           console.info('done'+res);
         });  
     });
+};
+
+$scope.scanbarcode = function(){
+$cordovaBarcodeScanner
+      .scan()
+      .then(function(barcodeData) {
+        $ionicPopup.alert({
+          title: 'Scan Done',
+          content: 'data is:'+angular.toJson(barcodeData)
+        }).then(function(res) {
+          console.info('done');
+        });  
+      }, function(error) {
+        $ionicPopup.alert({
+          title: 'Failed',
+          content: 'Not shared! due to '+angular.toJson(err)
+        }).then(function(res) {
+          console.info('done'+res);
+        }); 
+      });
 };
 
 });

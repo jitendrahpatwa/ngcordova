@@ -1,7 +1,7 @@
 angular.module('starter.controllers', ['ngCordova'])
 
 .controller('DashCtrl', function($scope,$ionicLoading,$ionicPopup,$cordovaSplashscreen,$timeout, $cordovaCamera, $cordovaCapture,$cordovaToast,$cordovaAdMob) {
-  $cordovaSplashscreen.show();
+  //$cordovaSplashscreen.show();
 
   $ionicLoading.show({ template: 'Wait Just a seconds!!!', noBackdrop: true, duration: 2000 });
   
@@ -206,8 +206,9 @@ angular.module('starter.controllers', ['ngCordova'])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope,$cordovaGeolocation,$cordovaSocialSharing,$ionicPopup,$cordovaBarcodeScanner,$cordovaStatusbar) {
+.controller('AccountCtrl', function($scope,$cordovaDialogs,$cordovaVibration,$cordovaGeolocation,$cordovaSocialSharing,$ionicPopup,$cordovaBarcodeScanner,$cordovaStatusbar) {
   $scope.latlon2 = "jon";
+  /*toofff
   $cordovaStatusbar.overlaysWebView(true);
 
   // styles: Default : 0, LightContent: 1, BlackTranslucent: 2, BlackOpaque: 3
@@ -223,7 +224,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
   $cordovaStatusbar.show();
 
-  var isVisible = $cordovaStatusbar.isVisible();
+  var isVisible = $cordovaStatusbar.isVisible();*/
 
   /*$scope.settings = {
     enableFriends: true
@@ -313,6 +314,13 @@ $cordovaBarcodeScanner
           console.info('done'+res);
         }); 
       });
+};
+
+$scope.vibrate = function(){
+  $cordovaDialogs.alert('Mobile will shrinked', 'after you hit on hit me', 'Hit me!')
+    .then(function() {
+      $cordovaVibration.vibrate(500);
+    });
 };
 
 });
